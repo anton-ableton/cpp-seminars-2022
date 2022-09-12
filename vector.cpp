@@ -11,7 +11,7 @@ public:
 
   vector(int capacity) {
     this->capacity = capacity;
-    this->size = size;
+    this->size = 0;
     this->data = new int[capacity]();
   }
 
@@ -21,15 +21,16 @@ public:
   // resizes vector if current capacity is reached
   void push_back(int num) {
     if (this->size == this->capacity) this->resize(capacity * 2);
-    this->data[size + 1] = num;
+    this->data[this->size++] = num;
   }
+
   // resizes vector to given capacity
   void resize(int new_capacity) {
-    this->capacity = new_capacity;
     int* new_data = new int[new_capacity]();
     for (int i = 0; i < capacity; i++) {
       new_data[i] = data[i];
     }
+    this->capacity = new_capacity;
     delete[] this->data;
     this->data = new_data;
   }
@@ -51,10 +52,11 @@ int main(int argc, char **argv) {
   // v->push_back(400);
   // v->push_back(500);
   // v->push_back(600);
-  for (int i = 0; i < v->capacity; i++) cout << v->data[i] << endl;
-  delete v;
+  for (int i = 0; i < v->size; i++) cout << v->data[i] << endl;
+  delete[] v;
   // v.size();
   // // size(&v)
   // vector v1;
   // v1.size();
+  return 0;
 }
