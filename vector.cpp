@@ -24,7 +24,7 @@ public:
   vector(vector &other) {
     this->capacity_ = other.capacity_;
     this->size_ = other.size_;
-    this->data_ = new int[other.size_];
+    this->data_ = new int[other.capacity_];
     for (int i=0; i < other.size_; i++) {
         this->data_[i] = other.data_[i];
     }
@@ -86,8 +86,9 @@ int main(int argc, char **argv) {
   v->push_back(100);
   v->push_back(100);
   v->printVector();
-  vector *w = new vector(0);
-  w->printVector();
+  vector *w = new vector(0); 
+  vector *z = v; //copy constructor
+  z->printVector();
   w->operator=(*v); //or w = v
   w->printVector();
   // v.size();
