@@ -6,13 +6,21 @@ using namespace std;
 class vector {
 public:
 
+  vector() {
+    cout << "Object:"<< this << " Called Constructor" << endl;
+  }
+    
   vector(int capacity) {
+    cout << "Object:"<< this << " Called Constructor" << endl;
     this->capacity_ = capacity;
     this->size_ = 0;
     this->data_ = new int[capacity]();
   }
 
-  ~vector() { delete[] data_; }
+  ~vector() { 
+    cout << "Object:"<< this << " Called Destructor" << endl;
+    // delete[] data_;
+  }
 
   // adds element to the last avaialable position,
   // resizes vector if current capacity is reached
@@ -22,11 +30,12 @@ public:
   }
 
   vector(vector &other) {
+    cout << "Object:"<< this << " Called Copy Constructor" << endl;
     this->capacity_ = other.capacity_;
     this->size_ = other.size_;
     this->data_ = new int[other.size_];
     for (int i=0; i < other.size_; i++) {
-        this->data_[i] = other.data_[i];
+        // this->data_[i] = other.data_[i];
     }
   }
 
@@ -76,23 +85,7 @@ private:
 
 
 int main(int argc, char **argv) {
-  vector *v = new vector(4);
-  v->printVector();
-  // v->resize(5);
-  // cout << v->capacity << endl;
-  v->push_back(100);
-  v->push_back(100);
-  v->push_back(100);
-  v->push_back(100);
-  v->push_back(100);
-  v->printVector();
-  vector *w = new vector(0);
-  w->printVector();
-  w->operator=(*v); //or w = v
-  w->printVector();
-  // v.size();
-  // // size(&v)
-  // vector v1;
-  // v1.size();
+  vector A;
+  vector B;
   return 0;
 }
