@@ -36,13 +36,12 @@ public:
     if (this->data_!=nullptr) {
         delete[] this->data_;
     }
-    this->data_ = new int[other.size_];
+    this->data_ = new int[other.capacity_];
     for (int i=0; i < other.size_; i++) {
         this->data_[i] = other.data_[i];
     }
     return *this;
   }
-  // resizes vector to given capacity
 
 
   void printVector() {
