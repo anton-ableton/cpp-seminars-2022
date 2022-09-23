@@ -43,6 +43,9 @@ public:
     return *this;
   }
 
+  int &operator [] (size_t index) {
+    return data_[index];
+  }
 
   void printVector() {
     cout << "Vector capacity is " << this->capacity_ << endl;
@@ -53,9 +56,17 @@ public:
     cout << endl;
   }
   
-  int get_size() { return this->size_; }
-  void set(int num, int idx);
-  int at(int idx);
+  int get_size() { 
+    return this->size_; 
+  }
+  
+  void set(int num, int idx) {
+    this->operator[](idx) = num;
+  }
+
+  int at(int idx) {
+    return this->operator[](idx);
+  }
 
 private:
   int *data_;
@@ -76,7 +87,7 @@ private:
 
 int main(int argc, char **argv) {
   vector *v = new vector(4);
-  v->printVector();
+  // v->printVector();
   // v->resize(5);
   // cout << v->capacity << endl;
   v->push_back(100);
@@ -84,12 +95,14 @@ int main(int argc, char **argv) {
   v->push_back(100);
   v->push_back(100);
   v->push_back(100);
+  v->operator[](3) = 5;
   v->printVector();
+  cout << v->operator[](3) << " " << endl;
   vector *w = new vector(0); 
   vector *z = v; //copy constructor
-  z->printVector();
-  w->operator=(*v); //or w = v
-  w->printVector();
+  // z->printVector();
+  // w->operator=(*v); //or *w = *v
+  // w->printVector();
   // v.size();
   // // size(&v)
   // vector v1;
