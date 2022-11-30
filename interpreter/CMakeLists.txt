@@ -1,12 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
-project(inbrain)
+project(forth)
 
-add_executable(inbrain command.cpp main.cpp)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WARN_FLAGS} ${ASAN_OPTIONS} -fsanitize=address")
 
-set_target_properties(
-  inbrain
-  PROPERTIES
-    CXX_STANDARD 11
-    CXX_STANDARD_REQUIRED YES
-)
-
+add_executable(forth command.cpp main.cpp)
